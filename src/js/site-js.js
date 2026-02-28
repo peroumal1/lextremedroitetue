@@ -80,6 +80,39 @@ function reflowEntries() {
   }
 }
 
+function updateCounter() {
+  /* Determine which filter categories are currently checked. */
+  var checkedIds = {};
+  document.querySelectorAll('input[type="checkbox"][name="filter"]:checked').forEach(function (cb) {
+    checkedIds[cb.id] = true;
+  });
+  var mortsActive   = !!checkedIds['morts'];
+  var blessesActive = !!checkedIds['blessés'];
+
+  /* Show/hide each counter row based on whether its category is active. */
+  var rowMorts   = document.getElementById('counter-row-morts');
+  var rowBlesses = document.getElementById('counter-row-blesses');
+  if (rowMorts)   rowMorts.style.display   = mortsActive   ? '' : 'none';
+  if (rowBlesses) rowBlesses.style.display = blessesActive ? '' : 'none';
+
+  /* Count only active-category values from entries still below scroll top. */
+  var morts = 0;
+  var blesses = 0;
+  var threshold = window.scrollY;
+  var entries = document.querySelectorAll('.timeline-entry[aria-hidden="false"]');
+  for (var i = 0; i < entries.length; i++) {
+    var entry = entries[i];
+    if (entry.offsetTop > threshold) {
+      if (mortsActive)   morts   += parseInt(entry.dataset.morts   || 0, 10);
+      if (blessesActive) blesses += parseInt(entry.dataset.blesses || 0, 10);
+    }
+  }
+  var elMorts   = document.getElementById('counter-morts');
+  var elBlesses = document.getElementById('counter-blesses');
+  if (elMorts)   elMorts.textContent   = morts;
+  if (elBlesses) elBlesses.textContent = blesses;
+}
+
 function onload() {
   /* We have JS! */
   var root = document.documentElement;
@@ -87,9 +120,17 @@ function onload() {
 
   /* Listen for filter changes */
   document.querySelectorAll('input[type="checkbox"][name="filter"]').forEach(function (box) {
-    box.addEventListener('click', hideUnchecked);
+    box.addEventListener('click', function () { hideUnchecked(); updateCounter(); });
   });
-  document.querySelector('input[type="checkbox"]#all').addEventListener('click', checkAll);
+  document.querySelector('input[type="checkbox"]#all').addEventListener('click', function () {
+    checkAll();
+    updateCounter();
+  });
+
+  /* Scroll counter */
+  window.addEventListener('scroll', updateCounter, { passive: true });
+  window.addEventListener('resize', updateCounter, { passive: true });
+  updateCounter();
 
   /* Flow entries */
   reflowEntries();

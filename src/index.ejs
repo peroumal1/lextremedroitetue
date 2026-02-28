@@ -38,6 +38,8 @@
         <div
           class="timeline-entry"
           data-category="<%= entry.categoriesString %>"
+          data-morts="<%= entry.morts || 0 %>"
+          data-blesses="<%= entry.blesses || 0 %>"
           aria-hidden="false"
         >
           <div class="timeline-icon <%- entry.color || 'grey' %>" title="<%= entry.faicon %>">
@@ -106,6 +108,17 @@
       </p>
     </footer>
     <% } %>
+
+    <div id="scroll-counter" class="scroll-counter" aria-live="polite" aria-label="Bilan cumulé">
+      <div id="counter-row-morts" class="counter-row">
+        <span class="counter-label">Morts</span>
+        <span class="counter-value" id="counter-morts">0</span>
+      </div>
+      <div id="counter-row-blesses" class="counter-row">
+        <span class="counter-label">Blessés</span>
+        <span class="counter-value" id="counter-blesses">0</span>
+      </div>
+    </div>
 
     <script src="js/classlist-polyfill.js"></script>
     <script src="js/site-js.js"></script>

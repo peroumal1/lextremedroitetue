@@ -15,12 +15,18 @@
  *   datetime  — YYYY-MM-DD HH:mm     (use this OR date, not both)
  *
  * Optional columns (omitting them is fine — defaults apply):
- *   categories  — pipe-separated list e.g. "launch|finance"  (default: none → always visible)
- *   color       — "black" | "red" | "white"                  (default: "black")
- *   faicon      — FA6 solid icon name without "fa-" prefix   (default: no icon)
+ *   categories  — pipe-separated list e.g. "morts|blessés"  (default: auto-derived from morts/blesses)
+ *   color       — "black" | "red" | "white"                 (default: "black")
+ *   faicon      — FA6 solid icon name without "fa-" prefix  (default: no icon)
  *                 e.g. "skull", "hand-fist", "rocket"
- *   source_url  — a link URL to attach to the entry          (default: none)
- *   source_text — the link label                             (default: none)
+ *   morts       — number of people killed (integer)         (default: 0)
+ *   blesses     — number of people injured (integer)        (default: 0)
+ *   source_url  — a link URL to attach to the entry         (default: none)
+ *   source_text — the link label                            (default: none)
+ *
+ * If `categories` is omitted, it is auto-derived:
+ *   morts > 0  → adds "morts"
+ *   blesses > 0 → adds "blessés"
  */
 
 'use strict';
@@ -70,8 +76,22 @@ for (const [i, row] of data.entries()) {
 
   const entry = { id };
 
-  const cats = get('categories');
-  if (cats) entry.categories = cats.split('|').map((c) => c.trim()).filter(Boolean);
+  // morts/blesses counts
+  const morts   = parseInt(get('morts'),   10) || 0;
+  const blesses = parseInt(get('blesses'), 10) || 0;
+  if (morts > 0)   entry.morts   = morts;
+  if (blesses > 0) entry.blesses = blesses;
+
+  // categories: explicit override, or auto-derived from morts/blesses
+  const catsRaw = get('categories');
+  if (catsRaw) {
+    entry.categories = catsRaw.split('|').map((c) => c.trim()).filter(Boolean);
+  } else {
+    const autoCats = [];
+    if (morts > 0)   autoCats.push('morts');
+    if (blesses > 0) autoCats.push('blessés');
+    if (autoCats.length) entry.categories = autoCats;
+  }
 
   entry.color = get('color') || 'black';
 
@@ -102,6 +122,8 @@ function formatEntry(e) {
   const lines = ['  {'];
   lines.push(`    id: ${JSON.stringify(e.id)},`);
   if (e.categories) lines.push(`    categories: ${JSON.stringify(e.categories)},`);
+  if (e.morts   != null) lines.push(`    morts: ${e.morts},`);
+  if (e.blesses != null) lines.push(`    blesses: ${e.blesses},`);
   lines.push(`    color: ${JSON.stringify(e.color)},`);
   if (e.faicon)   lines.push(`    faicon: ${JSON.stringify(e.faicon)},`);
   if (e.datetime) lines.push(`    datetime: ${JSON.stringify(e.datetime)},`);
