@@ -1,0 +1,4 @@
+id,date,datetime,title,body,categories,color,faicon,source_url,source_text
+first-event,2024-01-15,,My First Event,Something important happened here.,launch|product,black,rocket,https://example.com,Read more
+second-event,,2024-03-20 14:30,A Timed Event,"A description with <strong>bold</strong> and <em>emphasis</em>.",finance,red,skull,,
+third-event,2024-06-01,,Uncategorised Event,No category means this entry is always visible regardless of filters.,,black,hand-fist,,

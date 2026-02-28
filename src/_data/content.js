@@ -4,8 +4,8 @@ const entries = [
   {
     id: 'cat',
     categories: ['cat'],
-    color: 'green',
-    faicon: 'cat',
+    color: 'black',
+    faicon: 'skull', // tombstone substitute — fa-tombstone is FA Pro only
     datetime: '2021-01-01 05:00',
     title: 'Cats are very good',
     image: {
@@ -25,8 +25,8 @@ const entries = [
   {
     id: 'dog',
     categories: ['dog'],
-    color: 'green',
-    faicon: 'dog',
+    color: 'black',
+    faicon: 'hand-fist', // raised fist — FA6 name; try 'fist-raised' if it doesn't render (FA5 name)
     datetime: '2021-05-01 23:55',
     title: 'Puppies are great too',
     image: {
@@ -54,10 +54,10 @@ const entries = [
 ];
 
 // Page details
-const pageTitle = 'Static timeline generator'; // The title of the page that shows in the browser tab
-const pageDescription = 'A super fancy timeline'; // The description of the page for search engines
-const pageAuthor = 'Jane Doe'; // Your name
-const showMirrorLinks = true; // Whether to show links to the Wayback Machine and archive.is mirrors.
+const pageTitle = 'Static timeline generator';
+const pageDescription = 'A super fancy timeline';
+const pageAuthor = 'Jane Doe';
+const showMirrorLinks = true;
 
 // DON'T EDIT BELOW THIS LINE! --------------------------------------------------------------------
 const getFilters = (entries) => {
