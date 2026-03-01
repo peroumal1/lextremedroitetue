@@ -138,7 +138,7 @@ const entries = [
     id: "1980-04-19-foyer-protestants-paris",
     categories: ["blessés"],
     blesses: 4,
-    color: "red",
+    color: "black",
     faicon: "knife",
     date: "1980-04-19",
     title: "Attentat contre le foyer des étudiants protestants à Paris (Groupe Charles-Martel)",
