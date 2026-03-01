@@ -48,7 +48,10 @@ jobs:
               f"&prop=revisions&rvprop=ids|timestamp|comment|user|size"
               f"&rvlimit=20&format=json"
           )
-          with urllib.request.urlopen(url, timeout=30) as r:
+          req = urllib.request.Request(url, headers={
+              'User-Agent': 'lextremedroitetue-monitor/1.0 (https://github.com/peroumal1/lextremedroitetue)'
+          })
+          with urllib.request.urlopen(req, timeout=30) as r:
               data = json.load(r)
 
           revisions  = list(data['query']['pages'].values())[0]['revisions']  # newest first
