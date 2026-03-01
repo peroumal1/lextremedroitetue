@@ -1,4 +1,6 @@
 const moment = require('moment');
+require('moment/locale/fr');
+moment.locale('fr');
 
 const sentenceCase = function (str) {
   if (typeof str !== 'string' || !str.length) {

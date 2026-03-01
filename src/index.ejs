@@ -43,7 +43,7 @@
           aria-hidden="false"
         >
           <% const _tipParts = []; if (entry.morts > 0) _tipParts.push(entry.morts + ' mort' + (entry.morts > 1 ? 's' : '')); if (entry.blesses > 0) _tipParts.push(entry.blesses + ' blessé' + (entry.blesses > 1 ? 's' : '')); const _iconTitle = _tipParts.length ? _tipParts.join(', ') : (entry.faicon === 'xmark' ? 'Aucune victime' : ''); %>
-          <div class="timeline-icon <%- entry.color || 'grey' %>" title="<%= _iconTitle %>">
+          <div class="timeline-icon <%- entry.color || 'black' %>" title="<%= _iconTitle %>">
             <% if (entry.faicon) { %>
             <i class="fas fa-<%= entry.faicon %>" aria-hidden="true"></i>
             <% } %>
