@@ -5,6 +5,7 @@ const entries = [
   {
     id: "2023-05-23-tours-bombe-lgbtq",
     color: "black",
+    faicon: "xmark",
     date: "2023-05-23",
     title: "Attentat à la bombe incendiaire contre un centre LGBT+ à Tours",
     body: "Le 23 mai 2023 à Tours un adolescent intégriste catholique de 17 ans dépose un engin explosif artisanal à l'acide chlorhydrique contre un centre LGBT+. L'engin ne provoque aucune victime ; le suspect est arrêté le 1er juin 2023.",
@@ -190,6 +191,7 @@ const entries = [
   {
     id: "1968-10-28-rue-git-le-coeur",
     color: "black",
+    faicon: "xmark",
     date: "1968-10-28",
     title: "Attentat rue Gît-le-Cœur à Paris (Occident)",
     body: "Le 28 octobre 1968 le groupe d'extrême droite Occident pose une bombe rue Gît-le-Cœur à Paris. L'attentat ne fait pas de victimes.",
@@ -200,6 +202,7 @@ const entries = [
   {
     id: "1962-08-22-petit-clamart",
     color: "black",
+    faicon: "xmark",
     date: "1962-08-22",
     title: "Attentat du Petit-Clamart contre de Gaulle (OAS)",
     body: "Le 22 août 1962 un commando de l'OAS tend une embuscade au convoi présidentiel au Petit-Clamart et ouvre le feu sur la voiture du général de Gaulle. Bien que criblée de balles la DS présidentielle prend la fuite et de Gaulle en réchappa indemne.",
@@ -210,6 +213,7 @@ const entries = [
   {
     id: "1961-09-08-pont-sur-seine",
     color: "black",
+    faicon: "xmark",
     date: "1961-09-08",
     title: "Attentat de Pont-sur-Seine contre de Gaulle (OAS)",
     body: "Le 8 septembre 1961 l'OAS pose un engin explosif sur la route empruntée par le convoi présidentiel à Pont-sur-Seine. L'humidité réduit la puissance de l'explosion et le général de Gaulle et son épouse sortent indemnes.",
